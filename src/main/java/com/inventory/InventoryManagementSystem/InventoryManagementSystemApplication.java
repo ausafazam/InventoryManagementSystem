@@ -12,7 +12,7 @@ public class InventoryManagementSystemApplication {
 		System.out.println("Tejas KingCobra");
 		System.out.println("Anant saxena Ananconda");
 		System.out.println("Ghouse");
-		System.out.println("Ghouse");
+		System.out.println("Ghouse hi");
 		
 	}
 
