@@ -9,7 +9,8 @@ public class InventoryManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(InventoryManagementSystemApplication.class, args);
 		System.out.println("hello");
-		System.out.println("Tejas");
+		System.out.println("Tejas KingCobra");
+		System.out.println("Anant Ananconda");
 		
 	}
 
