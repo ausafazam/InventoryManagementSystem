@@ -14,6 +14,7 @@ public class InventoryManagementSystemApplication {
 		
 		System.out.println("Ausaf");
 		System.out.println("ghouse");
+		System.out.println("anant");
 		
 	}
 
