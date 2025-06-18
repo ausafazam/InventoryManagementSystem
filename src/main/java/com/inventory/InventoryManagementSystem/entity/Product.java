@@ -54,9 +54,12 @@ public class Product {
 	
 	private final LocalDateTime createdAt = LocalDateTime.now();
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	
 
 	@Override
 	public String toString() {
