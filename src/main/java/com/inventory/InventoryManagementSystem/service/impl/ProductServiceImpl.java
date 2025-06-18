@@ -1,11 +1,7 @@
 package com.inventory.InventoryManagementSystem.service.impl;
 
-import java.io.File;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.UUID;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
@@ -21,8 +17,11 @@ import com.inventory.InventoryManagementSystem.repository.CategoryRepository;
 import com.inventory.InventoryManagementSystem.repository.ProductRepository;
 import com.inventory.InventoryManagementSystem.service.ProductService;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -36,9 +35,10 @@ public class ProductServiceImpl implements ProductService {
     private static final String IMAGE_DIRECTORY = System.getProperty("user.dir") + "/product-image/";
 
     //AFTER YOUR FROTEND IS SET UP WROTE THIS SO THE IMAGE IS SAVED IN YOUR FRONTEND PUBLIC FOLDER
-    private static final String IMAGE_DIRECTOR_FRONTEND = "/Users/dennismac/phegonDev/ims-angular/public/products/";
+    private static final String IMAGE_DIRECTOR_FRONTEND = "/Users/2414304/";
 
 
+ 
     @Override
     public Response saveProduct(ProductDTO productDTO, MultipartFile imageFile) {
 
