@@ -1,11 +1,7 @@
 package com.inventory.InventoryManagementSystem.service.impl;
 
-import java.io.File;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.UUID;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
@@ -21,8 +17,10 @@ import com.inventory.InventoryManagementSystem.repository.CategoryRepository;
 import com.inventory.InventoryManagementSystem.repository.ProductRepository;
 import com.inventory.InventoryManagementSystem.service.ProductService;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -50,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
                 .name(productDTO.getName())
                 .sku(productDTO.getSku())
                 .price(productDTO.getPrice())
-                .stockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()))
+                .stockQuantity(productDTO.getStockQuantity())
                 .description(productDTO.getDescription())
                 .category(category)
                 .build();
@@ -106,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         if (productDTO.getStockQuantity() !=null && productDTO.getStockQuantity() >=0){
-        	existingProduct.setStockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()));
+            existingProduct.setStockQuantity(productDTO.getStockQuantity());
         }
 
         //Update the product
