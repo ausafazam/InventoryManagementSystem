@@ -12,7 +12,6 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 public class Response {
 	//generic 
 	private int status;
@@ -21,7 +20,6 @@ public class Response {
 	private String token;
 	private UserRole role;
 	private String expirationTime;
-	
 	
 	//for pagination
 	private Integer totalPages;
