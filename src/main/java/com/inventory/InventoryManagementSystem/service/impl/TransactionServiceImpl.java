@@ -63,7 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
             User user = userService.getCurrentLoggedInUser();
 
             // update the stock quantity and re-save
-            product.setStockQuantity(product.getStockQuantity() + quantity);
+            product.setStockQuantity(product.getStockQuantity().add(BigInteger.valueOf(quantity)));
             productRepository.save(product);
 
             // create a transaction
@@ -103,7 +103,7 @@ public class TransactionServiceImpl implements TransactionService {
                 User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+        product.setStockQuantity(product.getStockQuantity().add(BigInteger.valueOf(quantity)));
         productRepository.save(product);
 
         //create a transaction
@@ -144,7 +144,7 @@ public class TransactionServiceImpl implements TransactionService {
         User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+        product.setStockQuantity(product.getStockQuantity().add(BigInteger.valueOf(quantity)));
         productRepository.save(product);
 
         //create a transaction
