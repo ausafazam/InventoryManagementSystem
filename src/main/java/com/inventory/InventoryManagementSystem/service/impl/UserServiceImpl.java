@@ -17,7 +17,9 @@ import com.inventory.InventoryManagementSystem.dto.UserDTO;
 import com.inventory.InventoryManagementSystem.entity.User;
 import com.inventory.InventoryManagementSystem.enums.UserRole;
 import com.inventory.InventoryManagementSystem.exceptions.InvalidCredentialsException;
+import com.inventory.InventoryManagementSystem.exceptions.NotFoundException;
 import com.inventory.InventoryManagementSystem.repository.UserRepository;
+import com.inventory.InventoryManagementSystem.security.JwtUtils;
 import com.inventory.InventoryManagementSystem.service.UserService;
 
 import lombok.RequiredArgsConstructor;

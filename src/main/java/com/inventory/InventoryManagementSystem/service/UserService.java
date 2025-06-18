@@ -19,7 +19,8 @@ public interface UserService {
 	
 	Response deleteUser(Long id);
 	
-	Response grtUsersTransaction(Long id);
+	Response grtUsersTransactions(Long id);
+	
 	
 
 }
