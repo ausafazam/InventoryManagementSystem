@@ -7,23 +7,19 @@ import com.inventory.InventoryManagementSystem.dto.UserDTO;
 import com.inventory.InventoryManagementSystem.entity.User;
 
 public interface UserService {
-	
+
 	Response registerUser(RegisterRequest registerRequest);
 
-	
 	Response getAllUsers();
-	
+
 	User getCurrentLoggedInUser();
-	
+
 	Response updateUser(Long id, UserDTO userDTO);
-	
+
 	Response deleteUser(Long id);
-	
+
 	Response getUserTransactions(Long id);
-	
 
-    Response loginUser(LoginRequest loginRequest);
-
-
+	Response loginUser(LoginRequest loginRequest);
 
 }
