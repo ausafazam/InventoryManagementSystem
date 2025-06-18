@@ -23,7 +23,8 @@ public class ProductController {
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> saveProduct(
-            @RequestParam("imageFile") MultipartFile imageFile,
+       
+    		@RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
             @RequestParam("name") String  name,
             @RequestParam("sku") String  sku,
             @RequestParam("price") BigDecimal price,
@@ -31,6 +32,10 @@ public class ProductController {
             @RequestParam("categoryId") Long  categoryId,
             @RequestParam(value = "description", required = false) String  description
             ) {
+
+
+
+
         ProductDTO productDTO = new ProductDTO();
 
         productDTO.setName(name);
