@@ -19,6 +19,7 @@ import com.inventory.InventoryManagementSystem.service.ProductService;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
                 .name(productDTO.getName())
                 .sku(productDTO.getSku())
                 .price(productDTO.getPrice())
-                .stockQuantity(productDTO.getStockQuantity())
+                .stockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()))
                 .description(productDTO.getDescription())
                 .category(category)
                 .build();
@@ -104,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         if (productDTO.getStockQuantity() !=null && productDTO.getStockQuantity() >=0){
-            existingProduct.setStockQuantity(productDTO.getStockQuantity());
+        	existingProduct.setStockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()));
         }
 
         //Update the product
