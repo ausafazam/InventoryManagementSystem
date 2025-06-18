@@ -9,7 +9,7 @@ import com.inventory.InventoryManagementSystem.entity.User;
 public interface UserService {
 	
 	Response registerUser(RegisterRequest registerRequest);
-	Response loginUser(LoginRequest loginRequest);
+
 	
 	Response getAllUsers();
 	
@@ -21,5 +21,9 @@ public interface UserService {
 	
 	Response grtUsersTransaction(Long id);
 	
+
+    Response loginUser(LoginRequest loginRequest);
+
+
 
 }

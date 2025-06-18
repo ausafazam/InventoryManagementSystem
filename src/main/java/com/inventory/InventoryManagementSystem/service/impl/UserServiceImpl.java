@@ -13,11 +13,17 @@ import org.springframework.stereotype.Service;
 import com.inventory.InventoryManagementSystem.dto.LoginRequest;
 import com.inventory.InventoryManagementSystem.dto.RegisterRequest;
 import com.inventory.InventoryManagementSystem.dto.Response;
+
 import com.inventory.InventoryManagementSystem.dto.UserDTO;
+
+
 import com.inventory.InventoryManagementSystem.entity.User;
 import com.inventory.InventoryManagementSystem.enums.UserRole;
 import com.inventory.InventoryManagementSystem.exceptions.InvalidCredentialsException;
+import com.inventory.InventoryManagementSystem.exceptions.NotFoundException;
+
 import com.inventory.InventoryManagementSystem.repository.UserRepository;
+import com.inventory.InventoryManagementSystem.security.JwtUtils;
 import com.inventory.InventoryManagementSystem.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,8 +39,8 @@ public class UserServiceImpl implements UserService {
 	private final ModelMapper modelMapper;
 	private final JwtUtils jwtUtils;
 
-
-    @Override
+	
+	@Override
     public Response registerUser(RegisterRequest registerRequest) {
 
         UserRole role = UserRole.MANAGER;
@@ -59,7 +65,8 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-    @Override
+	@Override
+
     public Response loginUser(LoginRequest loginRequest) {
        User user = userRepository.findByEmail(loginRequest.getEmail())
                .orElseThrow(()-> new NotFoundException("Email not Found"));
@@ -77,6 +84,7 @@ public class UserServiceImpl implements UserService {
                 .expirationTime("6 month")
                 .build();
     }
+
 
     @Override
     public Response getAllUsers() {
@@ -161,6 +169,7 @@ public class UserServiceImpl implements UserService {
                 .user(userDTO)
                 .build();
     }
+
 
 
 }
