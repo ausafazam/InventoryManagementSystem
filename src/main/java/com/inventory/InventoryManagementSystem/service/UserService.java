@@ -19,7 +19,7 @@ public interface UserService {
 	
 	Response deleteUser(Long id);
 	
-	Response grtUsersTransaction(Long id);
+	Response getUserTransactions(Long id);
 	
 
     Response loginUser(LoginRequest loginRequest);
