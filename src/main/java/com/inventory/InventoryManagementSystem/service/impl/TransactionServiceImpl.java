@@ -1,19 +1,7 @@
 package com.inventory.InventoryManagementSystem.service.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-import com.inventory.InventoryManagementSystem.dto.Response;
 import com.inventory.InventoryManagementSystem.dto.TransactionDTO;
+import com.inventory.InventoryManagementSystem.dto.Response;
 import com.inventory.InventoryManagementSystem.dto.TransactionRequest;
 import com.inventory.InventoryManagementSystem.entity.Product;
 import com.inventory.InventoryManagementSystem.entity.Supplier;
@@ -28,10 +16,19 @@ import com.inventory.InventoryManagementSystem.repository.SupplierRepository;
 import com.inventory.InventoryManagementSystem.repository.TransactionRepository;
 import com.inventory.InventoryManagementSystem.service.TransactionService;
 import com.inventory.InventoryManagementSystem.service.UserService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
