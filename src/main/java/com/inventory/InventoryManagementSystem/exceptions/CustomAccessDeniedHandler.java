@@ -1,6 +1,6 @@
 package com.inventory.InventoryManagementSystem.exceptions;
 
-import java.io.IOException;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;

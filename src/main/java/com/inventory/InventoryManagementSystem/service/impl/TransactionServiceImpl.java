@@ -1,5 +1,5 @@
 package com.inventory.InventoryManagementSystem.service.impl;
-
+import com.inventory.InventoryManagementSystem.exceptions.NameVlaueRequiredException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -45,28 +46,30 @@ public class TransactionServiceImpl implements TransactionService {
     private final ProductRepository productRepository;
 
 
+
     @Override
     public Response restockInventory(TransactionRequest transactionRequest) {
-            Long productId = transactionRequest.getProductId();
-            Long supplierId = transactionRequest.getSupplierId();
-            Integer quantity = transactionRequest.getQuantity();
 
-            if(supplierId == null) throw new NameVlaueRequiredException("Supplier Id is Required");
+        Long productId = transactionRequest.getProductId();
+        Long supplierId = transactionRequest.getSupplierId();
+        Integer quantity = transactionRequest.getQuantity();
 
-            Product product = productRepository.findById(productId)
-            .orElseThrow(()-> new NotFoundException("Product Not Found"));
+        if (supplierId == null) throw new NameVlaueRequiredException("Supplier Id id Required");
 
-            Supplier supplier = supplierRepository.findById(supplierId)
-            .orElseThrow(()-> new NotFoundException("Product Not Found"));
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()-> new NotFoundException("Product Not Found"));
 
-            User user = UserService.getCurrentLoggedInUser();
+        Supplier supplier = supplierRepository.findById(supplierId)
+                .orElseThrow(()-> new NotFoundException("Supplier Not Found"));
 
-            // update the stock quantity and re-save
-            product.setStockQuantity(product.getStockQuantity() + quantity);
-            productRepository.save(product);
+        User user = userService.getCurrentLoggedInUser();
 
-            // create a transaction
-             Transaction transaction = Transaction.builder()
+        //update the stock quantity and re-save
+        product.setStockQuantity(product.getStockQuantity() + quantity);
+        productRepository.save(product);
+
+        //create a transaction
+        Transaction transaction = Transaction.builder()
                 .transactionType(TransactionType.PURCHASE)
                 .status(TransactionStatus.COMPLETED)
                 .product(product)
@@ -86,12 +89,12 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 
-            }
-
+    }
 
     @Override
     public Response sell(TransactionRequest transactionRequest) {
-         Long productId = transactionRequest.getProductId();
+
+        Long productId = transactionRequest.getProductId();
         Integer quantity = transactionRequest.getQuantity();
 
 
@@ -123,9 +126,10 @@ public class TransactionServiceImpl implements TransactionService {
                 .message("Transaction Sold Successfully")
                 .build();
     }
-    
+
     @Override
     public Response returnToSupplier(TransactionRequest transactionRequest) {
+
         Long productId = transactionRequest.getProductId();
         Long supplierId = transactionRequest.getSupplierId();
         Integer quantity = transactionRequest.getQuantity();
@@ -163,10 +167,11 @@ public class TransactionServiceImpl implements TransactionService {
                 .message("Transaction Returned Successfully Initialized")
                 .build();
     }
-    
+
     @Override
     public Response getAllTransactions(int page, int size, String searchText) {
-                  Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
         Page<Transaction> transactionPage = transactionRepository.searchTransactions(searchText, pageable);
 
         List<TransactionDTO> transactionDTOS = modelMapper
@@ -185,7 +190,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .transactions(transactionDTOS)
                 .build();
     }
-    
+
     @Override
     public Response getTransactionById(Long id) {
         Transaction transaction = transactionRepository.findById(id)
@@ -202,10 +207,11 @@ public class TransactionServiceImpl implements TransactionService {
                 .build();
 
     }
-    
+
     @Override
     public Response getAllTransactionByMonthAndYear(int month, int year) {
-        List<Transaction> transactions = transactionRepository.findAllByMonthAndYear(month, year);
+
+       List<Transaction> transactions = transactionRepository.findAllByMonthAndYear(month, year);
 
         List<TransactionDTO> transactionDTOS = modelMapper
                 .map(transactions, new TypeToken<List<TransactionDTO>>() {}.getType());
@@ -224,11 +230,10 @@ public class TransactionServiceImpl implements TransactionService {
                 .build();
     }
 
-    
     @Override
     public Response updateTransactionStatus(Long transactionId, TransactionStatus transactionStatus) {
 
-         Transaction existingTransaction = transactionRepository.findById(transactionId)
+        Transaction existingTransaction = transactionRepository.findById(transactionId)
                 .orElseThrow(()-> new NotFoundException("Transaction Not Found"));
 
         existingTransaction.setStatus(transactionStatus);
@@ -241,6 +246,4 @@ public class TransactionServiceImpl implements TransactionService {
                 .message("Transaction Status Successfully Updated")
                 .build();
     }
-        
-    
 }
