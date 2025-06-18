@@ -1,6 +1,7 @@
 package com.inventory.InventoryManagementSystem.service.impl;
 import com.inventory.InventoryManagementSystem.exceptions.NameVlaueRequiredException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,7 +32,6 @@ import com.inventory.InventoryManagementSystem.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -60,11 +60,11 @@ public class TransactionServiceImpl implements TransactionService {
         Supplier supplier = supplierRepository.findById(supplierId)
                 .orElseThrow(()-> new NotFoundException("Supplier Not Found"));
 
-        User user = userService.getCurrentLoggedInUser();
+            User user = userService.getCurrentLoggedInUser();
 
-        //update the stock quantity and re-save
-       product.setStockQuantity(product.getStockQuantity() + quantity);
-        productRepository.save(product);
+          //update the stock quantity and re-save
+            product.setStockQuantity(product.getStockQuantity().add(BigInteger.valueOf(quantity)));
+            productRepository.save(product);
 
         //create a transaction
         Transaction transaction = Transaction.builder()
@@ -103,7 +103,7 @@ public class TransactionServiceImpl implements TransactionService {
         User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+        product.setStockQuantity(product.getStockQuantity().subtract(BigInteger.valueOf(quantity)));
         productRepository.save(product);
 
         //create a transaction
@@ -145,7 +145,9 @@ public class TransactionServiceImpl implements TransactionService {
         User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-       product.setStockQuantity(product.getStockQuantity() - quantity);
+
+        product.setStockQuantity(product.getStockQuantity().subtract(BigInteger.valueOf(quantity)));
+
         productRepository.save(product);
 
         //create a transaction
