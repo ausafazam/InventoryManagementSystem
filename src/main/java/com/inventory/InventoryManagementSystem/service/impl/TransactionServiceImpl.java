@@ -59,10 +59,10 @@ public class TransactionServiceImpl implements TransactionService {
             Supplier supplier = supplierRepository.findById(supplierId)
             .orElseThrow(()-> new NotFoundException("Product Not Found"));
 
-            User user = UserService.getCurrentLoggedInUser();
+           User user = userService.getCurrentLoggedInUser();
 
             // update the stock quantity and re-save
-            product.setStockQuantity(product.getStockQuantity() + quantity);
+           product.setStockQuantity(product.getStockQuantity() + quantity);
             productRepository.save(product);
 
             // create a transaction
@@ -99,10 +99,10 @@ public class TransactionServiceImpl implements TransactionService {
                 .orElseThrow(()-> new NotFoundException("Product Not Found"));
 
 
-        User user = userService.getCurrentLoggedInUser();
+                User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+   //     product.setStockQuantity(product.getStockQuantity() - quantity);
         productRepository.save(product);
 
         //create a transaction
@@ -141,7 +141,7 @@ public class TransactionServiceImpl implements TransactionService {
         User user = userService.getCurrentLoggedInUser();
 
         //update the stock quantity and re-save
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+   //     product.setStockQuantity(product.getStockQuantity() - quantity);
         productRepository.save(product);
 
         //create a transaction
@@ -193,7 +193,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         TransactionDTO transactionDTO = modelMapper.map(transaction, TransactionDTO.class);
 
-        transactionDTO.getUser().setTransactions(null); //removing the user trnasaction list
+        transactionDTO.getUser().setTransactions(null); //removing the user transaction list
 
         return Response.builder()
                 .status(200)
