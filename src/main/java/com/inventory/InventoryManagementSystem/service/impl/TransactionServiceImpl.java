@@ -2,6 +2,7 @@ package com.inventory.InventoryManagementSystem.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -31,8 +32,6 @@ import com.inventory.InventoryManagementSystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -51,7 +50,9 @@ public class TransactionServiceImpl implements TransactionService {
             Long supplierId = transactionRequest.getSupplierId();
             Integer quantity = transactionRequest.getQuantity();
 
-            if(supplierId == null) throw new NameVlaueRequiredException("Supplier Id is Required");
+            if(supplierId == null) {
+				throw new NameVlaueRequiredException("Supplier Id is Required");
+			}
 
             Product product = productRepository.findById(productId)
             .orElseThrow(()-> new NotFoundException("Product Not Found"));
@@ -130,7 +131,9 @@ public class TransactionServiceImpl implements TransactionService {
         Long supplierId = transactionRequest.getSupplierId();
         Integer quantity = transactionRequest.getQuantity();
 
-        if (supplierId == null) throw new NameVlaueRequiredException("Supplier Id id Required");
+        if (supplierId == null) {
+			throw new NameVlaueRequiredException("Supplier Id id Required");
+		}
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(()-> new NotFoundException("Product Not Found"));
