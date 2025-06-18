@@ -1,17 +1,16 @@
 package com.inventory.InventoryManagementSystem.service.impl;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.UUID;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.inventory.InventoryManagementSystem.dto.ProductDTO;
-import com.inventory.InventoryManagementSystem.repository.CategoryRepository;
-import com.inventory.InventoryManagementSystem.repository.ProductRepository;
-import com.inventory.InventoryManagementSystem.service.ProductService;
 
 import com.inventory.InventoryManagementSystem.dto.ProductDTO;
 import com.inventory.InventoryManagementSystem.dto.Response;
@@ -22,10 +21,8 @@ import com.inventory.InventoryManagementSystem.repository.CategoryRepository;
 import com.inventory.InventoryManagementSystem.repository.ProductRepository;
 import com.inventory.InventoryManagementSystem.service.ProductService;
 
-import java.io.File;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
@@ -53,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
                 .name(productDTO.getName())
                 .sku(productDTO.getSku())
                 .price(productDTO.getPrice())
-                .stockQuantity(productDTO.getStockQuantity())
+                .stockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()))
                 .description(productDTO.getDescription())
                 .category(category)
                 .build();
@@ -109,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         if (productDTO.getStockQuantity() !=null && productDTO.getStockQuantity() >=0){
-            existingProduct.setStockQuantity(productDTO.getStockQuantity());
+        	existingProduct.setStockQuantity(BigInteger.valueOf(productDTO.getStockQuantity()));
         }
 
         //Update the product
