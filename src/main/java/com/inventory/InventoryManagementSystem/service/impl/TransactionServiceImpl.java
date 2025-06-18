@@ -60,10 +60,10 @@ public class TransactionServiceImpl implements TransactionService {
             Supplier supplier = supplierRepository.findById(supplierId)
             .orElseThrow(()-> new NotFoundException("Product Not Found"));
 
-            User user = UserService.getCurrentLoggedInUser();
+            User user = userService.getCurrentLoggedInUser();
 
-            // update the stock quantity and re-save
-            product.setStockQuantity(product.getStockQuantity() + quantity);
+          //update the stock quantity and re-save
+            product.setStockQuantity(product.getStockQuantity() - quantity);
             productRepository.save(product);
 
             // create a transaction
