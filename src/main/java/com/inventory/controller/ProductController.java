@@ -19,11 +19,9 @@ import com.inventory.dto.Response;
 import com.inventory.service.ProductService;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/products")
-@RequiredArgsConstructor
 @Slf4j
 @AllArgsConstructor
 public class ProductController {
