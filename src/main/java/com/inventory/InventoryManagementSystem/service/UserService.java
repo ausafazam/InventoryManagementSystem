@@ -1,10 +1,10 @@
 package com.inventory.InventoryManagementSystem.service;
 
-import com.inventory.InventoryManagementSystem.dto.LoginRequest;
-import com.inventory.InventoryManagementSystem.dto.RegisterRequest;
-import com.inventory.InventoryManagementSystem.dto.Response;
-import com.inventory.InventoryManagementSystem.dto.UserDTO;
-import com.inventory.InventoryManagementSystem.entity.User;
+import com.inventory.dto.LoginRequest;
+import com.inventory.dto.RegisterRequest;
+import com.inventory.dto.Response;
+import com.inventory.dto.UserDTO;
+import com.inventory.entity.User;
 
 public interface UserService {
 
